@@ -34,16 +34,18 @@ jobs:
 
       - name: Package IPA
         run: |
+          cd build/ios/iphoneos
           mkdir -p Payload
-          mv build/ios/iphoneos/Runner.app Payload/
+          mv Runner.app Payload/
           zip -qq -r -9 FlutterIpaExport.ipa Payload
-        working-directory: build/ios/iphoneos
+          mv FlutterIpaExport.ipa ../../../
+          cd ../../../
 
       - name: Upload IPA
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: build/ios/iphoneos/FlutterIpaExport.ipa
+          file: FlutterIpaExport.ipa
           tag: v1.0
           overwrite: true
           body: "Automated unsigned build"
