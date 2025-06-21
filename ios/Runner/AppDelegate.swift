@@ -1,8 +1,8 @@
-import UIKit
 import Flutter
+import UIKit
 import CastarSDK
 
-@UIApplicationMain
+@main
 @objc class AppDelegate: FlutterAppDelegate {
   override func application(
     _ application: UIApplication,
@@ -13,6 +13,7 @@ import CastarSDK
       case .success(let castar): castar.start()
       case .failure(let e): print("Castar init error: \(e.localizedDescription)")
     }
+    GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
-} 
+}
