@@ -8,7 +8,7 @@ import CastarSDK
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    let result = Castar.createInstance(devKey: "CSK****FHQlUQZ")
+    let result = Castar.createInstance(withDevKey: "CSK****FHQlUQZ")
     switch result {
       case .success(let castar): castar.start()
       case .failure(let e): print("Castar init error: \(e.localizedDescription)")
