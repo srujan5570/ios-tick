@@ -11,21 +11,12 @@ import CastarSDK
     
     print("AppDelegate: Starting application initialization...")
     
-    // Register Flutter plugins first to ensure basic functionality
+    // Register Flutter plugins first
     print("AppDelegate: Registering Flutter plugins...")
     GeneratedPluginRegistrant.register(with: self)
     print("AppDelegate: Flutter plugins registered successfully")
     
     // Initialize CastarSDK with comprehensive error handling
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-      self.initializeCastarSDK()
-    }
-    
-    print("AppDelegate: Application initialization completed")
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
-  }
-  
-  private func initializeCastarSDK() {
     print("AppDelegate: Starting CastarSDK initialization...")
     
     do {
@@ -48,5 +39,8 @@ import CastarSDK
       print("AppDelegate: CastarSDK startup crash: \(error.localizedDescription)")
       print("AppDelegate: Error details: \(error)")
     }
+    
+    print("AppDelegate: Application initialization completed")
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }

@@ -29,23 +29,23 @@ jobs:
           echo 'FRAMEWORK_SEARCH_PATHS=$(SRCROOT)/Frameworks' >> ios/Flutter/Generated.xcconfig
           echo 'OTHER_LDFLAGS=$(inherited) -framework CastarSDK' >> ios/Flutter/Generated.xcconfig
 
-      - name: Build debug IPA
-        run: flutter build ios --debug --no-codesign
+      - name: Build profile IPA
+        run: flutter build ios --profile --no-codesign
 
-      - name: Package debug IPA
+      - name: Package profile IPA
         run: |
           cd build/ios/iphoneos
           mkdir -p Payload
           cp -r Runner.app Payload/
-          zip -qq -r -9 DebugBuild.ipa Payload
-          mv DebugBuild.ipa ../../../
+          zip -qq -r -9 ProfileBuild.ipa Payload
+          mv ProfileBuild.ipa ../../../
           cd ../../../
 
-      - name: Upload debug IPA
+      - name: Upload profile IPA
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: DebugBuild.ipa
+          file: ProfileBuild.ipa
           tag: v1.0
           overwrite: true
-          body: "Debug build IPA with full debug features preserved"
+          body: "Profile build IPA with CastarSDK properly configured"

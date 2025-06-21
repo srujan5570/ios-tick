@@ -45,5 +45,19 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	
+	<!-- CastarSDK Required Permissions -->
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs camera access for AR features</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs microphone access for AR features</string>
+	<key>NSMotionUsageDescription</key>
+	<string>This app needs motion access for AR features</string>
+	
+	<!-- iOS 13+ Required -->
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arkit</string>
+	</array>
 </dict>
 </plist>
