@@ -29,23 +29,23 @@ jobs:
           echo 'FRAMEWORK_SEARCH_PATHS=$(SRCROOT)/Frameworks' >> ios/Flutter/Generated.xcconfig
           echo 'OTHER_LDFLAGS=$(inherited) -framework CastarSDK' >> ios/Flutter/Generated.xcconfig
 
-      - name: Build unsigned IPA
-        run: flutter build ios --release --no-codesign
+      - name: Build debug IPA
+        run: flutter build ios --debug --no-codesign
 
-      - name: Package IPA
+      - name: Package debug IPA
         run: |
           cd build/ios/iphoneos
           mkdir -p Payload
-          mv Runner.app Payload/
-          zip -qq -r -9 FlutterIpaExport.ipa Payload
-          mv FlutterIpaExport.ipa ../../../
+          cp -r Runner.app Payload/
+          zip -qq -r -9 DebugBuild.ipa Payload
+          mv DebugBuild.ipa ../../../
           cd ../../../
 
-      - name: Upload IPA
+      - name: Upload debug IPA
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: FlutterIpaExport.ipa
+          file: DebugBuild.ipa
           tag: v1.0
           overwrite: true
-          body: "Automated unsigned build"
+          body: "Debug build IPA with full debug features preserved"
