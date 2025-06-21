@@ -24,11 +24,6 @@ jobs:
           pod repo update
         working-directory: ios
 
-      - name: Copy CastarSDK.framework
-        run: |
-          mkdir -p ios/Frameworks
-          cp -R ios/Frameworks/CastarSDK.framework ios/Frameworks/
-
       - name: Inject linker config
         run: |
           echo 'FRAMEWORK_SEARCH_PATHS=$(SRCROOT)/Frameworks' >> ios/Flutter/Generated.xcconfig
